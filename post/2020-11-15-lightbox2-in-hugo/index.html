@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Lightbox2 in hugo &middot; SNTagore&#39;s blog</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		<style>
+                  pre.r {
+		      background: #AD9B9B;
+                  }
+		  pre {
+		      background: #e5e5e5;
+                  }
+                </style>
+
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link rel="stylesheet" href="/css/lightbox.css">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="SNTagore&#39;s blog" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">SNTagore&#39;s blog</h2>
+				</a>
+				<ul>
+    
+    
+        <li>
+            <a href="https://www.linkedin.com/in/shayontagore/">
+                
+                <span>linkedin</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="https://github.com/sntag">
+                
+                <span>github</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="/getting-started/">
+                
+                <span>rss</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="/about/">
+                
+                <span>about me</span>
+                
+            </a>
+        </li>
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        SNTag
+        <br>
+        <span>on&nbsp;</span><time datetime="2020-11-15 00:00:00 &#43;0000 UTC">November 15, 2020</time>
+</div>
+
+		<h1 class="post-title">Lightbox2 in hugo</h1>
+<div class="post-line"></div>
+
+		
+
+		<p>This is a quick run-down of how I set up lightbox2 for my hugo site. To be honest, it is my personal documentation to the <a href="https://julianstier.com/posts/2020/03/hugo-and-lightbox/">shortcode written by Julian Stier in his blog-post about lightbox2</a>. His post helped me deal with a number of problems using lightbox2 with hugo when the <a href="https://lokeshdhakar.com/projects/lightbox2/">main lightbox2 tutorial had failed me</a>. This will be a post under constant development as I work out lightbox2 and to remind myself how to implement it.</p>
+<h1 id="setup">Setup</h1>
+<h2 id="preparing-the-directories-and-files">Preparing the directories and files</h2>
+<p>The first step is to prepare the main hugo directory. If it is not there already, generate the directory <code>/static/css/</code> and <code>/static/js/</code>.</p>
+<p>Download the latest <a href="https://github.com/lokesh/lightbox2/releases">github release</a>. Unzip where you want. The important detail is extracting from the lightbox2 release the file <code>/dist/css/lightbox.css</code> into <code>/static/css/</code>.</p>
+<p>If your hugo site does not have jquery, extract from the lightbox2 release the file <code>dist/js/lightbox-plus-jquery.css</code> into <code>/static/js/</code>.</p>
+<h2 id="modifying-the-html">Modifying the html</h2>
+<p>The exact details of this bit can change depending on your hugo setup. The main concept is that you have to find the files with the <!-- raw HTML omitted --> &amp; <!-- raw HTML omitted --> tags. In the head section, add <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/lightbox.css&quot;&gt;</code>. In the body section, add <code>&lt;script src=&quot;/js/lightbox-plus-jquery.js&quot;&gt;&lt;/script&gt;</code>.</p>
+<h2 id="shortcode-figure">Shortcode: figure</h2>
+<p>The shortcode was taken directly from <a href="https://julianstier.com/posts/2020/03/hugo-and-lightbox/">Julian Stier&rsquo;s blog post on his lightbox2 implementation</a>. This was put under <code>/layouts/shortcodes/figure.html</code>.</p>
+<h1 id="implementation">Implementation</h1>
+<h2 id="single-images">Single images</h2>
+<p>The shortcode written by <a href="https://julianstier.com/posts/2020/03/hugo-and-lightbox/">Julian Stier</a> has the option for:</p>
+<ul>
+<li>src : Where the image is</li>
+<li>class : where. floating.</li>
+<li>caption : caption</li>
+</ul>
+
+
+  
+
+
+
+
+
+<figure
+  class="floatright"
+  
+  
+  >
+    <a
+      
+        data-lightbox="image-../../photos/DSLR-timelapse/2020-10-25_16-28.png"
+      
+      
+        href="https://sntag.github.io/post/2020-11-15-lightbox2-in-hugo/../../photos/DSLR-timelapse/2020-10-25_16-28.png"
+      
+    
+    >
+  <img
+      
+        src="https://sntag.github.io/post/2020-11-15-lightbox2-in-hugo/../../photos/DSLR-timelapse/2020-10-25_16-28.png"
+      
+        alt="A random image from my gallery"
+        
+        
+         />
+    </a>
+  
+  
+    <figcaption>
+      <span class="img--caption">
+        Figure . A random image from my gallery
+        
+      </span>
+    </figcaption>
+  
+</figure>
+
+
+
+<h2 id="gallery">Gallery</h2>
+<p>Work in progress.</p>
+<h1 id="references">References</h1>
+<ol>
+<li>Figure shortcode and getting me to understand lightbox:</li>
+</ol>
+<p><a href="https://julianstier.com/posts/2020/03/hugo-and-lightbox/">Julian Stier: Adding lightbox to Hugo</a></p>
+<ol start="2">
+<li>Adding gallery option:</li>
+</ol>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/post/2020-10-30-generating-custom-raspberry-pi-images/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2020-11-15 21:36:44.267026206 -0500 EST m=&#43;0.051392489">2020</time> Shayon Tagore. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+	<script src="/js/lightbox-plus-jquery.js"></script>
+    </body>
+</html>

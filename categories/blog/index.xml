@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on SNTagore&#39;s blog</title>
+    <link>https://sntag.github.io/categories/blog/</link>
+    <description>Recent content in blog on SNTagore&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 30 Oct 2020 14:17:40 +0000</lastBuildDate>
+    
+	<atom:link href="https://sntag.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Generating custom raspberry-pi images</title>
+      <link>https://sntag.github.io/post/2020-10-30-generating-custom-raspberry-pi-images/</link>
+      <pubDate>Fri, 30 Oct 2020 14:17:40 +0000</pubDate>
+      
+      <guid>https://sntag.github.io/post/2020-10-30-generating-custom-raspberry-pi-images/</guid>
+      <description>I&amp;rsquo;ve been working on a number of projects involving my raspberry pi; DSLR timelapse, a pi running dedicated stocks and notifications systems, and a media server. I have a silly approach of solving any critical errors by flashing a new raspbian image to the SD card and continuing as if the error was never made. The approach can be heavily criticized, but I&amp;rsquo;m not invested in immediately working out the errors; it&amp;rsquo;s usually something obscure.</description>
+    </item>
+    
+  </channel>
+</rss>

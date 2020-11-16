@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on SNTagore&#39;s blog</title>
+    <link>https://sntag.github.io/categories/python/</link>
+    <description>Recent content in python on SNTagore&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sntag.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>eink calendar: Part 1</title>
+      <link>https://sntag.github.io/post/2019-12-03-eink-calendar/</link>
+      <pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sntag.github.io/post/2019-12-03-eink-calendar/</guid>
+      <description>UPDATE 2020, Oct 16 I stopped trying to modify my kobo ereader a long while back. When I started the project, I was enjoy a ready access to nearby libraries and the joys of physical books. I&amp;rsquo;ve come to find that there is room for the Kobo in my library, especially for the heavier books like Les Miserable and The Count of Monte Cristo that are just too big to carry around.</description>
+    </item>
+    
+  </channel>
+</rss>

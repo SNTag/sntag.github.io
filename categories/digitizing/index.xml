@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>digitizing on SNTagore&#39;s blog</title>
+    <link>https://sntag.github.io/categories/digitizing/</link>
+    <description>Recent content in digitizing on SNTagore&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 Oct 2020 15:37:17 +0000</lastBuildDate>
+    
+	<atom:link href="https://sntag.github.io/categories/digitizing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Digitizing collections</title>
+      <link>https://sntag.github.io/post/2020-10-08-digitizing-collections/</link>
+      <pubDate>Fri, 09 Oct 2020 15:37:17 +0000</pubDate>
+      
+      <guid>https://sntag.github.io/post/2020-10-08-digitizing-collections/</guid>
+      <description>I&amp;rsquo;ve begun creating a media server lately. Something that I never thought I would attempt. With the number of relatively comprehensive streaming services, a media server did not make much sense. Not to mention my ptsd thinking back to my teenage years of terrible data-handling. I would create inumerable backups with minute differences, making it impossible to realize which one was the proper backup when needed. I&amp;rsquo;m still surprised today by some backup hidden deep in my file systems.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lightbox2 on SNTagore&#39;s blog</title>
+    <link>https://sntag.github.io/categories/lightbox2/</link>
+    <description>Recent content in lightbox2 on SNTagore&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Nov 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sntag.github.io/categories/lightbox2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Lightbox2 in hugo</title>
+      <link>https://sntag.github.io/post/2020-11-15-lightbox2-in-hugo/</link>
+      <pubDate>Sun, 15 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sntag.github.io/post/2020-11-15-lightbox2-in-hugo/</guid>
+      <description>This is a quick run-down of how I set up lightbox2 for my hugo site. To be honest, it is my personal documentation to the shortcode written by Julian Stier in his blog-post about lightbox2. His post helped me deal with a number of problems using lightbox2 with hugo when the main lightbox2 tutorial had failed me. This will be a post under constant development as I work out lightbox2 and to remind myself how to implement it.</description>
+    </item>
+    
+  </channel>
+</rss>

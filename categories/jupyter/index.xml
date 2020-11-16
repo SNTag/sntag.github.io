@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jupyter on SNTagore&#39;s blog</title>
+    <link>https://sntag.github.io/categories/jupyter/</link>
+    <description>Recent content in Jupyter on SNTagore&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sntag.github.io/categories/jupyter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Emacs and Julia to work</title>
+      <link>https://sntag.github.io/post/2020-04-13-getting-emacs-and-julia-to-work/</link>
+      <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sntag.github.io/post/2020-04-13-getting-emacs-and-julia-to-work/</guid>
+      <description>Julia and Emacs Julia is a hot upcoming language. I see nothing but support for it online, and many benchmarks showing a notable improvements over Python or R. The main reason why it is not already rivaling Python or R is the framework and packages. The language is still new, and does not have a mature framework. Even though it is now on the stable v1.4, there are features I&amp;rsquo;ve seen described as as &amp;lsquo;in development&amp;rsquo;.</description>
+    </item>
+    
+  </channel>
+</rss>

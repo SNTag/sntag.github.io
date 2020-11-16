@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>chopin on SNTagore&#39;s blog</title>
+    <link>https://sntag.github.io/categories/chopin/</link>
+    <description>Recent content in chopin on SNTagore&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sntag.github.io/categories/chopin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Back into Piano</title>
+      <link>https://sntag.github.io/post/2020-06-14-piano/</link>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sntag.github.io/post/2020-06-14-piano/</guid>
+      <description>During this quarantine period, it seems as though there are fewer jobs and more applicants than ever before. So between my coursera courses and job applications, I’m taking the time to try my hand at the piano again. Not that I stopped, it’s been on and off for a long time. I just did not have as much interest at mastering it before. The timing for my new-found interest is unfortunate…my piano has been neglected from my on-and-off interest, with keys towards both ends often getting stuck, or off-tune.</description>
+    </item>
+    
+  </channel>
+</rss>

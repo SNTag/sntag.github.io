@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>machine-learning on SNTagore&#39;s blog</title>
+    <link>https://sntag.github.io/categories/machine-learning/</link>
+    <description>Recent content in machine-learning on SNTagore&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sntag.github.io/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tidymodels &amp; palmer-penguins</title>
+      <link>https://sntag.github.io/post/2020-08-04-tidymodels-and-palmers-penguins/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sntag.github.io/post/2020-08-04-tidymodels-and-palmers-penguins/</guid>
+      <description>Oddly enough, I’ve been hearing a lot about tidymodels this week, from reddit to youtube. Plus, the tidytuesday dataset this week looks fun.I figure I’ll spend a tidytuesday trying to figure out this new and in-development machine-learning package.
+For the newcomer, tidymodels is the planned replacement for the caret package. Complicated machine learning (ml) models will continue using caret for a while as tidymodels is very new to the field.</description>
+    </item>
+    
+  </channel>
+</rss>

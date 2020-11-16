@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Generating custom raspberry-pi images &middot; SNTagore&#39;s blog</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		<style>
+                  pre.r {
+		      background: #AD9B9B;
+                  }
+		  pre {
+		      background: #e5e5e5;
+                  }
+                </style>
+
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link rel="stylesheet" href="/css/lightbox.css">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="SNTagore&#39;s blog" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">SNTagore&#39;s blog</h2>
+				</a>
+				<ul>
+    
+    
+        <li>
+            <a href="https://www.linkedin.com/in/shayontagore/">
+                
+                <span>linkedin</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="https://github.com/sntag">
+                
+                <span>github</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="/getting-started/">
+                
+                <span>rss</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="/about/">
+                
+                <span>about me</span>
+                
+            </a>
+        </li>
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        SNTag
+        <br>
+        <span>on&nbsp;</span><time datetime="2020-10-30 14:17:40 &#43;0000 UTC">October 30, 2020</time>
+</div>
+
+		<h1 class="post-title">Generating custom raspberry-pi images</h1>
+<div class="post-line"></div>
+
+		
+
+		<p>I&rsquo;ve been working on a number of projects involving my raspberry pi; DSLR timelapse, a pi running
+dedicated stocks and notifications systems, and a media server. I have a silly approach of solving
+any critical errors by flashing a new raspbian image to the SD card and continuing as if the error
+was never made. The approach can be heavily criticized, but I&rsquo;m not invested in immediately working
+out the errors; it&rsquo;s usually something obscure. 90% of the time, some critical software was just
+installed the wrong way. I&rsquo;ve been looking for easy ways to set up my raspbian images from the
+get-go and found what I think is the best approach: <a href="https://github.com/RPi-Distro/Pi-gen">Pi-gen</a>.</p>
+<p>The easiest and most common alternative is <a href="https://www.pibakery.org/">pi-bakery</a>. I strongly
+recommend it to those new to the raspberry pi. It modifies the official raspbian image using
+&lsquo;recipes&rsquo; (colourful and easy-to-understand codeblocks). However, take note that it has limitations
+when moving outside the standard code-blocks and it is officially unsupported (there may be a pibakery2
+at some point).</p>
+<p><a href="https://duckduckgo.com/?t=canonical&amp;q=pi-gen&amp;ia=web">Pi-gen</a> creates a custom-made raspbian image
+from scratch. Its use assumes you have some degree of experience with bash. This post is meant to be an
+update of sorts to the original article that got me onto
+<a href="http://kmdouglass.github.io/posts/create-a-custom-raspbian-image-with-pi-gen-part-1/">pi-gen</a>. The
+original article includes steps that are more easily configured as of late.</p>
+<h1 id="pi-gen">Pi-gen</h1>
+<p><strong>I want to repeat that I wrote this to add onto the details in <a href="http://kmdouglass.github.io/posts/create-a-custom-raspbian-image-with-pi-gen-part-1/">the original
+post</a> that
+introduced me to pi-gen.</strong> The original post did not make use of some very handy options available
+to set up a variety of features which inspired this post. It is even easier to make an image than
+the original post makes it seem.</p>
+<p>The pi-gen software is easy and incredibly useful. Pi-gen is the tool used to generate the official
+raspbian images, so you can be confident that it works. I recommend the first-time user to jump to
+&lsquo;Building the image&rsquo; below after installing docker and Pi-gen (&lsquo;Getting the software&rsquo;). It will
+generate the standard desktop version of raspbian, but it will confirm that Pi-gen is working. Be
+fore-warned, generating a new image can be a lengthy process (took me a little over 30 min on a
+strong laptop) and consume a lot of space (several GB).</p>
+<p>If you follow this guide step by step, I will show you how to build a custom raspbian lite
+image. You can create a custom image with Desktop enabled too if you skip the section &lsquo;Stages&rsquo;
+below.</p>
+<p>The raspbian image will have:</p>
+<ul>
+<li>Personalized username</li>
+<li>Changed password</li>
+<li>Timezone setup</li>
+<li>SSH and wifi configured</li>
+<li>custom packages installed (such as git)</li>
+</ul>
+<h2 id="getting-the-software">Getting the software</h2>
+<p>You will need &lsquo;docker&rsquo; to run Pi-gen. Instructions to install it can be found
+<a href="https://docs.docker.com/engine/install/">here</a>.</p>
+<p>The first step is to get the software.</p>
+<pre><code class="language-{bash}" data-lang="{bash}">cd ~
+git clone https://github.com/RPi-Distro/Pi-gen
+
+</code></pre><h2 id="stages">Stages</h2>
+<p><strong>WARNING</strong> skip this section to create an image with Desktop enabled.</p>
+<p>The software builds a custom raspbian image in <a href="https://github.com/RPi-Distro/Pi-gen#stage-anatomy">stages</a> (see the git page for more info):
+stage0 - absolute minimal filesystem
+stage1 - makes it bootable
+stage2 - sets up a lite system
+stage3 - sets-up the desktop experience
+stage4 - the normal raspbian image. installs software standard to new users.
+stage5 - the normal raspbian image. installs bloatware.</p>
+<p>I&rsquo;m interested in setting up a headerless raspberry pi, so I disable stage 3, 4, 5 by making simple
+files. To make a full raspbian image with desktop enabled, ignore the following.</p>
+<pre><code class="language-{bash}" data-lang="{bash}">touch ./stage3/SKIP ./stage4/SKIP ./stage5/SKIP
+touch ./stage4/SKIP_IMAGES ./stage5/SKIP_IMAGES
+
+</code></pre><h2 id="adding-custom-details">Adding custom details</h2>
+<p>It is very easy to configure Pi-gen. Make a config file ( /pi-gen/config ) and add the following:</p>
+<pre><code class="language-{bash}" data-lang="{bash}"># image name
+IMG_NAME=puck
+
+# account details
+FIRST_USER_NAME=&quot;Puck&quot;
+FIRST_USER_PASS=&quot;JackShallHaveJillNoughtShallGoIll&quot;
+
+# timezone
+LOCALE_DEFAULT=&quot;en_US.UTF-8&quot;
+TIMEZONE_DEFAULT=&quot;America/New_York&quot;
+
+# connectivity
+
+ENABLE_SSH=1
+WPA_ESSID=&quot;MinisTirith&quot;
+WPA_PASSWORD=&quot;Gandalf&quot;
+WPA_COUNTRY=&quot;US&quot;
+
+</code></pre><p>Pi-gen has a <a href="https://github.com/RPi-Distro/Pi-gen#config">series of useful comands</a> that enable
+easy-modification of a number of features. You can probably guess what each variable does, but I
+will go over it in detail.</p>
+<h3 id="image-name">Image name</h3>
+<p>This line decides the name of the image you are creating. for me, I called it simply
+<a href="https://en.wikipedia.org/wiki/Puck_(A_Midsummer_Night%27s_Dream)">&lsquo;Puck&rsquo;</a>, after the main
+user-account that will be assigned to the image.</p>
+<pre><code class="language-{bash}" data-lang="{bash}">IMG_NAME=puck
+
+</code></pre><h3 id="user-settings">User settings</h3>
+<p>I strongly recommend changing the default username and password. You can always change this again,
+but the default values in a raspbian image are too well known and far too easy a target.</p>
+<p>The first line says what the main user-name should be. The default is <code>pi</code>, and you always want to
+change that to reduce chances of a security breach. To have any mischief nought go ill, you should
+change the password too by setting the variable <code>FIRST_USER_PASS</code>.</p>
+<pre><code class="language-{bash}" data-lang="{bash}">FIRST_USER_NAME=&quot;Puck&quot;
+FIRST_USER_PASS=&quot;JackShallHaveJillNoughtShallGoIll&quot;
+
+</code></pre><h3 id="time">Time</h3>
+<p>I want the raspberry to be on the same time as me. Both of these lines inform the timezone.</p>
+<pre><code class="language-{bash}" data-lang="{bash}">LOCALE_DEFAULT=&quot;en_US.UTF-8&quot;
+TIMEZONE_DEFAULT=&quot;America/New_York&quot;
+
+</code></pre><h3 id="connections">Connections</h3>
+<p>And finally, whats the point of all this effort if I cannot connect to Puck? I want SSH enabled from
+the get go by setting <code>ENABLE_SSH</code> to 1. The name of the wifi to connect to is given
+through <code>WPA_ESSID</code> along with the password (<code>WPA_PASSWORD</code>) and the country (<code>WPA_COUNTRY</code>).</p>
+<p>If you are going with a desktop image, I recommend disabling ssh (<code>ENABLE_SSH=0</code>) unless you know
+what you are doing. It will be safer.</p>
+<pre><code class="language-{bash}" data-lang="{bash}">ENABLE_SSH=1
+WPA_ESSID=&quot;MinisTirith&quot;
+WPA_PASSWORD=&quot;Gandalf&quot;
+WPA_COUNTRY=&quot;US&quot;
+
+</code></pre><h3 id="etc">Etc</h3>
+<p>The only other value that you may have an interest in setting (and unmentioned here)
+is <code>KEYBOARD_LAYOUT</code>, but as I am typing in English, I&rsquo;m happy enough leaving it to the default.</p>
+<h2 id="installing-specific-packages">Installing specific packages</h2>
+<p>There are some packages that I want the image to come pre-built. Git, for one. This is a simple
+issue of modifying the file in /Pi-gen/stage2/01-sys-tweaks/00-packages. Add each package of
+interest in a new line, and it will be installed using the command <code>sudo apt-get install</code>.</p>
+<h2 id="building-the-image">Building the image</h2>
+<p>Even if you haven&rsquo;t done the above steps, you can build an image. It only requires maximum of two
+lines too. Go to the root directory of Pi-gen, and:</p>
+<pre><code class="language-{R}" data-lang="{R}">./build-docker.sh
+
+</code></pre><p>There is a decent chance for the build to get interrupted. In most cases, the following will save you:</p>
+<pre><code class="language-{R}" data-lang="{R}">CONTINUE=1 ./build-docker.sh
+
+</code></pre><p>The image should now be in <code>/Pi-gen/deploy/</code> with the value you passed <code>IMG_NAME</code> in the file name
+as a zipped file. To get to the image, <code>unzip image_${DATE}_${IMG_NAME}.zip</code> in the directory of
+your choice.</p>
+<h2 id="flashing-the-image">Flashing the image</h2>
+<p><strong>WARNING</strong> Be sure of paths in this step! You can easily overwrite/delete/crash you system and your
+data if done improperly! If you want to play it safe, there are software to handle image flashing such as <a href="https://www.balena.io/etcher/">balenaEtcher</a>. I have not used such programs, I cannot tell you how good it is.</p>
+<p>At this point, insert your SD card into your system. MAKE SURE YOU KNOW WHERE YOUR SD-CARD IS. A
+simple approach is to open a program like GParted, and see where it is. ex., for me, it
+is <code>/dev/mmcblk0</code>. Otherwise you can use the terminal command <code>df</code>. Simply observe changes in the
+list without the SD card inserted and with it in. Navigate to the directory where you have unzipped
+your image and give the path to the SD card to the variable <code>of=</code>, as I have below.</p>
+<pre><code class="language-{bash}" data-lang="{bash}">sudo dd if=2020-10-27-puck-lite.img of=/dev/mmcblk0 bs=4096; sync
+
+</code></pre><p>After this, all that&rsquo;s left is plugging your SD card into the pi and letting it install.</p>
+<h1 id="tips-for-those-seeking-advanced-manipulation">Tips for those seeking advanced manipulation</h1>
+<p><strong>WARNING: The following are ruminations I had on how to go about doing something. I cannot promise it would work.</strong></p>
+<p>There are some other features people may be interested in, but I have not tried them out. Features
+such as installing a program using git or modifying the rc.local.</p>
+<h2 id="install-programs-to-the-image-using-git">Install programs to the image using git</h2>
+<p>To have the image install a git program, you can try making a /Pi-gen/stage2/03-git/ folder as <a href="https://github.com/RPi-Distro/pi-gen/issues/210">this
+fellow mentioned</a>. Looking at
+/Pi-gen/stage2/01-sys-tweaks/ as an example, the majority of the commands are decided in
+01-run.sh. Such a file under /Pi-gen/stage2/03-git/01-run.sh may be made to install programs. I have
+not attempted this, but I do plan to try this at some point to get my dotfiles and other programs on
+there faster.</p>
+<h2 id="modifying-rclocal">modifying rc.local</h2>
+<p><a href="https://github.com/RPi-Distro/pi-gen/issues/246">https://github.com/RPi-Distro/pi-gen/issues/246</a></p>
+<p>It seems to be an easy task. I have not attempted it myself, so I won&rsquo;t go into the details here. Just know it is possible.</p>
+<h1 id="references">References</h1>
+<p><a href="https://learnthinksolvecreate.wordpress.com/category/raspberry-pi/pi-gen/">learnthinksolve</a></p>
+<p><a href="http://kmdouglass.github.io/posts/create-a-custom-raspbian-image-with-pi-gen-part-1/">kmdouglass</a></p>
+<p><a href="https://github.com/RPi-Distro/Pi-gen">Pi-gen</a></p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/post/2020-10-08-digitizing-collections/" class="left arrow">&#8592;</a>
+		<a href="/post/2020-11-15-lightbox2-in-hugo/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2020-11-15 21:36:44.262700765 -0500 EST m=&#43;0.047067058">2020</time> Shayon Tagore. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+	<script src="/js/lightbox-plus-jquery.js"></script>
+    </body>
+</html>
