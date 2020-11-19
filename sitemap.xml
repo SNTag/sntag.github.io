@@ -217,6 +217,11 @@
   </url>
   
   <url>
+    <loc>https://sntag.github.io/photos/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://sntag.github.io/tags/</loc>
   </url>
   
