@@ -55,6 +55,17 @@
   </url>
   
   <url>
+    <loc>https://sntag.github.io/photos/</loc>
+    <lastmod>2020-11-17T00:00:00+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://sntag.github.io/photos/bing-winter-2020/</loc>
+    <lastmod>2020-11-17T00:00:00+05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://sntag.github.io/categories/hugo/</loc>
     <lastmod>2020-11-15T00:00:00+00:00</lastmod>
   </url>
@@ -236,11 +247,6 @@
   
   <url>
     <loc>https://sntag.github.io/about/</loc>
-  </url>
-  
-  <url>
-    <loc>https://sntag.github.io/photos/</loc>
-    <priority>0</priority>
   </url>
   
   <url>

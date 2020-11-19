@@ -6,9 +6,20 @@
     <description>Recent content on SNTagore&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 17 Nov 2020 00:00:00 +0500</lastBuildDate>
     
 	<atom:link href="https://sntag.github.io/photos/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Binghamton Winter - 2020</title>
+      <link>https://sntag.github.io/photos/bing-winter-2020/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0500</pubDate>
+      
+      <guid>https://sntag.github.io/photos/bing-winter-2020/</guid>
+      <description>Pictures from a Binghamton, NY winter. Click a photo below to see it larger. Use the arrow keys to move among the photos.
+            </description>
+    </item>
     
   </channel>
 </rss>
