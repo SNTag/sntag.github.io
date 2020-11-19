@@ -3,6 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://sntag.github.io/</loc>
+    <lastmod>2020-11-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://sntag.github.io/post/</loc>
+    <lastmod>2020-11-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://sntag.github.io/categories/</loc>
     <lastmod>2020-11-15T00:00:00+00:00</lastmod>
   </url>
@@ -28,17 +40,7 @@
   </url>
   
   <url>
-    <loc>https://sntag.github.io/post/</loc>
-    <lastmod>2020-11-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://sntag.github.io/categories/shortcodes/</loc>
-    <lastmod>2020-11-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://sntag.github.io/</loc>
     <lastmod>2020-11-15T00:00:00+00:00</lastmod>
   </url>
   
