@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tutorial on SNTagore&#39;s blog</title>
+    <link>https://sntag.github.io/categories/tutorial/</link>
+    <description>Recent content in tutorial on SNTagore&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Nov 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sntag.github.io/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DSLR timelapse</title>
+      <link>https://sntag.github.io/post/2020-11-18-dslr-timelapse/</link>
+      <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sntag.github.io/post/2020-11-18-dslr-timelapse/</guid>
+      <description>I&amp;rsquo;ve started a new project: using a Raspberry Pi to create a timelapse on a DSLR. I&amp;rsquo;ve recently moved to Binghamton NY, and from my 8th floor apartment, I have an amazing view of rolling hills. In the morning, clouds cover the summits. Preludes to rain drape the sky in rolling whites and greys. But I can&amp;rsquo;t communicate any of this to my parents back in Singapore, and while words could paint a picture, an actual picture is worth a 1000 words.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>DSLR timelapse &middot; SNTagore&#39;s blog</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		<style>
+                  pre.r {
+		      background: #AD9B9B;
+                  }
+		  pre {
+		      background: #e5e5e5;
+                  }
+                </style>
+
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link rel="stylesheet" href="/css/lightbox.css">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="SNTagore&#39;s blog" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">SNTagore&#39;s blog</h2>
+				</a>
+				<ul>
+    
+    
+        <li>
+            <a href="/photos/">
+                
+                <span>gallery</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="https://www.linkedin.com/in/shayontagore/">
+                
+                <span>linkedin</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="https://github.com/sntag">
+                
+                <span>github</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="/getting-started/">
+                
+                <span>rss</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="/about/">
+                
+                <span>about me</span>
+                
+            </a>
+        </li>
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        SNTag
+        <br>
+        <span>on&nbsp;</span><time datetime="2020-11-18 00:00:00 &#43;0000 UTC">November 18, 2020</time>
+</div>
+
+		<h1 class="post-title">DSLR timelapse</h1>
+<div class="post-line"></div>
+
+		
+
+		<p>I&rsquo;ve started a new project: using a Raspberry Pi to create a timelapse on a DSLR. I&rsquo;ve recently
+moved to Binghamton NY, and from my 8th floor apartment, I have an amazing view of rolling hills. In
+the morning, clouds cover the summits. Preludes to rain drape the sky in rolling whites and
+greys. But I can&rsquo;t communicate any of this to my parents back in Singapore, and while words could
+paint a picture, an actual picture is worth a 1000 words. And I imagine a timelapse is worth a
+million or so.</p>
+<p>I had a bit of a challenge figuring out how to do a timelapse. This is a tutorial that I hope will
+help someone else facing the same challenges. I used my DSLR in this tutorial, but most cameras are
+supported. See <a href="http://gphoto.org/doc/remote/">here</a> to see compatible cameras and available
+functionality.</p>
+<h1 id="putting-it-together-the-hardware">Putting it together: the hardware</h1>
+<p>I already have a DSLR 700D. I also have a raspberry pi. It&rsquo;s a simple task to connect the two.</p>
+<ul>
+<li>raspberry pi B+ with a 5v 2.5A power supply</li>
+<li>DSLR</li>
+<li>USB to mini-usb or whichever cable connects to your camera</li>
+</ul>
+<h1 id="putting-it-together-the-code">Putting it together: the code</h1>
+<h2 id="gphoto2">gphoto2</h2>
+<p>The code is extremely simple. But like most of my DIY projects, I came across problems that are
+caused because tech hates me as much as I love it. I will say now that the tutorials I used to put
+my project together are somewhat outdated or have an inefficent approach. For example, in the
+<a href="https://pimylifeup.com/raspberry-pi-dslr-camera-control/">pimylife: Raspberry Pi DSLR Camera
+Control</a> tutorial, don&rsquo;t install gphoto2
+to the raspberry pi from GitHub. I recommend just using your package manager.</p>
+<pre><code class="language-{bash}" data-lang="{bash}"># debian/ubuntu/pop-os
+sudo apt install gphoto2
+
+</code></pre><p>Installing gphoto2 from github gave me a headache. It would detect the camera, but unable to capture
+photos. If gphoto2 installed correctly, run the following:</p>
+<pre><code class="language-{bash}" data-lang="{bash}"># is gphoto2 installed?
+gphoto2 --version
+
+</code></pre><p>If it worked, try connecting your DSLR to the pi and running the following. It should return the name of your camera:</p>
+<pre><code class="language-{bash}" data-lang="{bash}">gphoto2 --auto-detect
+
+</code></pre><h2 id="simple-bash-script">Simple bash script</h2>
+<p>Now you need a script to control the camera. Gphoto2 has a series of
+configurations that can be setup. Things such as aperture, shutter speed, white-balance, etc. The
+avilable configurations change camera-to-camera. See the
+<a href="http://gphoto.org/doc/remote/">documentation</a> to see whats avilable for your camera. These
+configurations can be set using &ndash;set-config. The first thing you want to state in the script is
+where to save the photos. This was one of my original headaches.</p>
+<pre><code class="language-{bash}" data-lang="{bash}"># Where to save the script: DSLR's SD-card (1)
+gphoto2 --set-config capturetarget=1
+
+</code></pre><p>after that, I created a simple loop that waited for x period of time before taking another photo:</p>
+<pre><code class="language-{bash}" data-lang="{bash}">x=1
+until [ $x -gt 10 ]
+do
+	gphoto2 --capture-image --camera 'Canon EOS 700D'
+    # x=$((x+1))
+    echo $x
+    sleep 2m
+done
+
+</code></pre><p>Don&rsquo;t forget to replace the variable given for <code>--camera</code> with your own camera ID!</p>
+<p>To change how long the gap between photos is, you can simply adjust the value for sleep. Right now,
+its every 2 minutes. You can set it up for every x seconds (<code>sleep xs</code>), x hours (<code>sleep xh</code>), or
+fraction of time (<code>sleep xs ym zh</code>). This gives this very simple bash script that will take photos
+non-stop until the script is ended.</p>
+<pre><code class="language-{bash}" data-lang="{bash}">#!/usr/bin/env
+# Author: SNTag
+# Date: 2020-Oct-25th
+
+# Where to save the script: DSLR's SD-card (1)
+gphoto2 --set-config capturetarget=1
+
+# time-loop
+x=1
+until [ $x -gt 10 ]
+do
+    gphoto2 --capture-image --camera 'Canon EOS 700D'
+    # x=$((x+1))
+    echo $x
+    sleep 2m
+done
+
+</code></pre><p>You might have noticed the commented-out line <code>x=$((x+1))</code>. I wrote the code this way initially to limit the number of pictures taken in the timelapse to 10 photos. You might want to make use of this functionality too, just uncomment that line and replace the 10 in <code>until [ $x -gt 10]</code> with your own number.</p>
+<h2 id="running-the-bash-script">Running the bash script</h2>
+<p>Running the bash script could be different person-to-person. If you have a screen and keyboard
+attached to the pi, its as simple as starting a terminal and running bash on the script. If you did
+not set up the script to take x number of photos, simply press Ctrl-x to stop the photos. The script
+could be made more complex, but this works for me.</p>
+<p>In a headerless set-up, it can be harder to keep the camera running if the ssh breaks
+connection. There are two solutions. I recommend using tmux, not the approach I took (I added it to
+rc.local. I simply restart the pi and it starts working. It makes sense for my unique current
+situation.).</p>
+<p>If using tmux, it&rsquo;s a simple task to create a session that can be reconnected to whenever you
+want. I&rsquo;m learning the details about it now and will update this when I have more experience with
+it.</p>
+<h1 id="putting-it-together-blender">Putting it together: blender</h1>
+<p>Now the final part: creating the actual timelapse. There are probably easier ways to do this, but I
+opted for blender to compile it. It seems to be highly recommended, and I imagine the depth of tools
+will help when I start making good time-lapses. Before getting into blender, move the photos you
+will make a time lapse of to somewhere on your computer and lets do some pre-processing.</p>
+<h2 id="preparing-the-photos">Preparing the photos</h2>
+<p>The first step is to prepare the photos. You will want to make the luminosity for your photos
+consistent. There is a simple script on github to do
+<a href="https://github.com/cyberang3l/timelapse-deflicker">this</a>. Don&rsquo;t worry, this script will NOT affect
+your original photos! You will want to download this repo to your computer:</p>
+<pre><code class="language-{bash}" data-lang="{bash}"># download timelapse-deflicker. will require 'git'
+git clone https://github.com/cyberang3l/timelapse-deflicker
+
+</code></pre><p>Copy the script <code>timelapse-deflicker.pl</code> to where you placed your photos. When run, it will
+determine the luminosity per photo in the directory and average them to reduce flickering in the
+final steps of making a timelapse! The modified photos will be placed in the same directory under
+&lsquo;./Deflickered&rsquo;. To run the script, run this command in the directory:</p>
+<pre><code class="language-{bash}" data-lang="{bash}">./timelapse-deflicker.pl -p 2 -v
+
+</code></pre><h2 id="blender">Blender</h2>
+<p><strong>Note:</strong> I used blender 2.82.</p>
+<p>I have never used blender before. I have intentionally missed a few steps to get a finished
+product. The software is complicated, has tons of features, and out of my league for the
+time-being. But I did manage to get it working, and this is how I did it.</p>
+<p>The obvious first step is to get blender:</p>
+<pre><code class="language-{bash}" data-lang="{bash}"># install blender (debian/ubuntu/pop-os)
+sudo apt install blender
+
+</code></pre><p>After starting blender, there should be an options menu. Select &lsquo;video editing&rsquo;.</p>
+
+
+  
+
+
+
+
+
+<figure
+  class="floatright"
+  
+  
+  >
+    <a
+      
+        data-lightbox="image-../photos/DSLR-timelapse/2020-10-25_17-29.png"
+      
+      
+        href="https://sntag.github.io/post/2020-11-18-dslr-timelapse/../photos/DSLR-timelapse/2020-10-25_17-29.png"
+      
+    
+    >
+  <img
+      
+        src="https://sntag.github.io/post/2020-11-18-dslr-timelapse/../photos/DSLR-timelapse/2020-10-25_17-29.png"
+      
+        alt="Starting blender"
+        
+        
+         />
+    </a>
+  
+  
+    <figcaption>
+      <span class="img--caption">
+        Figure . Starting blender
+        
+      </span>
+    </figcaption>
+  
+</figure>
+
+
+
+<p>From there, import pictures by clicking &lsquo;add &gt; Image/Sequence&rsquo; button. It should be roughly in the
+middle-left of the screen. Move to the directory with the deflickered photos and import.</p>
+
+
+  
+
+
+
+
+
+<figure
+  class="floatright"
+  
+  
+  >
+    <a
+      
+        data-lightbox="image-../../photos/DSLR-timelapse/2020-10-25_17-30.png"
+      
+      
+        href="https://sntag.github.io/post/2020-11-18-dslr-timelapse/../../photos/DSLR-timelapse/2020-10-25_17-30.png"
+      
+    
+    >
+  <img
+      
+        src="https://sntag.github.io/post/2020-11-18-dslr-timelapse/../../photos/DSLR-timelapse/2020-10-25_17-30.png"
+      
+        alt="Add images to a track"
+        
+        
+         />
+    </a>
+  
+  
+    <figcaption>
+      <span class="img--caption">
+        Figure 1. Add images to a track
+        
+      </span>
+    </figcaption>
+  
+</figure>
+
+
+
+<p>You should now have your photos in blender and running as a timelapse! Now it&rsquo;s time for some
+adjustments to the video itself. On the bottom right corner, you should see &lsquo;start&rsquo; and &lsquo;end&rsquo;. You
+will want to modify the &lsquo;end&rsquo; value to end around where your timelapse ends. If you cant get the
+exact value, you can drag the end of the photo-region to extend/compress it.</p>
+<!-- raw HTML omitted -->
+<p>Move to &lsquo;Output Properties&rsquo;, and modify the frame rate in &lsquo;Output Properties &gt; Dimensions&rsquo; as shown
+below. Each &lsquo;frame&rsquo; in frame rate is a picture. So 24fps is 24 images per second. That may be too
+fast or too slow depending on the number of pictures you took.</p>
+
+
+  
+
+
+
+
+
+<figure
+  class="floatright"
+  
+  
+  >
+    <a
+      
+        data-lightbox="image-../../photos/DSLR-timelapse/2020-10-25_16-34.png"
+      
+      
+        href="https://sntag.github.io/post/2020-11-18-dslr-timelapse/../../photos/DSLR-timelapse/2020-10-25_16-34.png"
+      
+    
+    >
+  <img
+      
+        src="https://sntag.github.io/post/2020-11-18-dslr-timelapse/../../photos/DSLR-timelapse/2020-10-25_16-34.png"
+      
+        alt="Changing Output Properties"
+        
+        
+         />
+    </a>
+  
+  
+    <figcaption>
+      <span class="img--caption">
+        Figure 2. Changing Output Properties
+        
+      </span>
+    </figcaption>
+  
+</figure>
+
+
+
+<p>Move to &lsquo;Output Properties &gt; Output&rsquo;, and select the file format you want it as. I used
+FFmpeg. Importantly, under &lsquo;Output&rsquo;, you will see where rendered videos will go to. On my computer,
+its &lsquo;/tmp/'. Make sure to remember this or change it as appropriate. You may also want to mess with
+compression with change the picture quality, its up to you.</p>
+
+
+  
+
+
+
+
+
+<figure
+  class="floatright"
+  
+  
+  >
+    <a
+      
+        data-lightbox="image-../../photos/DSLR-timelapse/2020-10-25_16-36.png"
+      
+      
+        href="https://sntag.github.io/post/2020-11-18-dslr-timelapse/../../photos/DSLR-timelapse/2020-10-25_16-36.png"
+      
+    
+    >
+  <img
+      
+        src="https://sntag.github.io/post/2020-11-18-dslr-timelapse/../../photos/DSLR-timelapse/2020-10-25_16-36.png"
+      
+        alt="File type to export as"
+        
+        
+         />
+    </a>
+  
+  
+    <figcaption>
+      <span class="img--caption">
+        Figure 3. File type to export as
+        
+      </span>
+    </figcaption>
+  
+</figure>
+
+
+
+<p>Finally, on the task menu, select &lsquo;Render &gt; Render animation&rsquo;. A separate window will pop up,
+showing each frame of your time-lapse in slow motion. This is the system rendering your movie. Don&rsquo;t
+close this window and wait for it to finish. This step will take a while.</p>
+
+
+  
+
+
+
+
+
+<figure
+  class="floatright"
+  
+  
+  >
+    <a
+      
+        data-lightbox="image-../../photos/DSLR-timelapse/2020-10-25_16-37.png"
+      
+      
+        href="https://sntag.github.io/post/2020-11-18-dslr-timelapse/../../photos/DSLR-timelapse/2020-10-25_16-37.png"
+      
+    
+    >
+  <img
+      
+        src="https://sntag.github.io/post/2020-11-18-dslr-timelapse/../../photos/DSLR-timelapse/2020-10-25_16-37.png"
+      
+        alt="Rendering image"
+        
+        
+         />
+    </a>
+  
+  
+    <figcaption>
+      <span class="img--caption">
+        Figure 4. Rendering image
+        
+      </span>
+    </figcaption>
+  
+</figure>
+
+
+
+<p>Once it&rsquo;s done, you can close the extra window. The final movie has been rendered to the directory
+mentioned above (for me, &lsquo;/tmp/'). Go to that directory and look for the right video file.</p>
+<h1 id="future-plans">Future plans</h1>
+<p>After all of this, you should have a final product! The very first timelapse I have made using this
+approach can be found <a href="https://www.youtube.com/watch?v=nq9-GD46CHQ">here</a>! Its not quite in the
+style I want. My DSLR failed to get a proper focus in some of the frames. I&rsquo;m not sure how to solve
+this problem. I would assume that setting the focus to infinity should do it, but my lens does not
+have any focus indicators.</p>
+<p>Other possible improvements require being gear hungry&hellip;and by gear, I also mean the kind in
+motors. I hope to build my own camera slider. That is a project I can do easily enough with the
+raspberry pi as well. I&rsquo;m hoping to eventually develop this project to take a timelapse of seasons
+as seen from my window. I face other challenges too. The battery is nowhere near enough. My first
+timelapse was as short as it was because the battery died. I need to get either an expanded camera
+grip with room for multiple batteries or a dummy battery. Since I can&rsquo;t find a reputable dummy
+camera at a reasonable price (I am not going to risk my DSLR with the 20-30USD batteries I have
+seen), the best option is to increase battery supply.</p>
+<h1 id="references">References</h1>
+<p><a href="https://joegiampaoli.blogspot.com/2015/04/creating-time-lapse-videos-mostly-in.html">BLOG &mdash; Joe Giampaoli: Time-lapse Photography with Linux </a></p>
+<p><a href="https://sites.google.com/site/alistargazing/home/image-processing/processing-toolbox/blender-tutorial">BLOG &mdash; Alister&rsquo;s Skygazing: Blender Time-Lapse Tutorial</a></p>
+<p><a href="https://www.youtube.com/watch?v=qi2JtMKXKgE">YOUTUBE &mdash; Blender 2.8 Video Editing - Video Speed / Time Lapse</a></p>
+<p><a href="https://github.com/cyberang3l/timelapse-deflicker">GITHUB &mdash;  cyberang3l / timelapse-deflicker</a></p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/post/2020-11-15-lightbox2-in-hugo/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2020-11-18 23:55:28.979045118 -0500 EST m=&#43;0.062300266">2020</time> Shayon Tagore. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+	<script src="/js/lightbox-plus-jquery.js"></script>
+    </body>
+</html>

@@ -106,7 +106,7 @@
 <p>Download the latest <a href="https://github.com/lokesh/lightbox2/releases">github release</a>. Unzip where you want. The important detail is extracting from the lightbox2 release the file <code>/dist/css/lightbox.css</code> into <code>/static/css/</code>.</p>
 <p>If your hugo site does not have jquery, extract from the lightbox2 release the file <code>dist/js/lightbox-plus-jquery.css</code> into <code>/static/js/</code>.</p>
 <h2 id="modifying-the-html">Modifying the html</h2>
-<p>The exact details of this bit can change depending on your hugo setup. The main concept is that you have to find the files with the <!-- raw HTML omitted --> &amp; <!-- raw HTML omitted --> tags. In the head section, add <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/lightbox.css&quot;&gt;</code>. In the body section, add <code>&lt;script src=&quot;/js/lightbox-plus-jquery.js&quot;&gt;&lt;/script&gt;</code>.</p>
+<p>The exact details of this bit can change depending on your hugo setup. The main concept is that you have to find the files with the &lt;head&gt; &amp; &lt;body&gt; tags. In the head section, add <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/lightbox.css&quot;&gt;</code>. In the body section, add <code>&lt;script src=&quot;/js/lightbox-plus-jquery.js&quot;&gt;&lt;/script&gt;</code>.</p>
 <h2 id="shortcode-figure">Shortcode: figure</h2>
 <p>The shortcode was taken directly from <a href="https://julianstier.com/posts/2020/03/hugo-and-lightbox/">Julian Stier&rsquo;s blog post on his lightbox2 implementation</a>. This was put under <code>/layouts/shortcodes/figure.html</code>.</p>
 <h1 id="implementation">Implementation</h1>
@@ -117,6 +117,7 @@
 <li>class : where. floating.</li>
 <li>caption : caption</li>
 </ul>
+<p>{{&lt; figure class=&quot;floatright&rdquo; src=&rdquo;../../photos/DSLR-timelapse/2020-10-25_16-28.png&rdquo; caption=&quot;A random image from my gallery&rdquo; &gt;}}</p>
 
 
   
@@ -180,6 +181,7 @@
 
 	<div class="pagination">
 		<a href="/post/2020-10-30-generating-custom-raspberry-pi-images/" class="left arrow">&#8592;</a>
+		<a href="/post/2020-11-18-dslr-timelapse/" class="right arrow">&#8594;</a>
 
 		<a href="#" class="top">Top</a>
 	</div>
@@ -189,7 +191,7 @@
         		<footer>
 			
 			<span>
-			&copy; <time datetime="2020-11-18 23:31:31.188075849 -0500 EST m=&#43;0.072620936">2020</time> Shayon Tagore. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			&copy; <time datetime="2020-11-18 23:55:28.975118221 -0500 EST m=&#43;0.058373374">2020</time> Shayon Tagore. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
 			</span>
 		</footer>
 
