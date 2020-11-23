@@ -41,7 +41,7 @@
     
         <li>
             <a href="/photos/">
-                
+                <i class='fa fa-home'></i>
                 <span>gallery</span>
                 
             </a>
@@ -49,7 +49,7 @@
     
         <li>
             <a href="https://www.linkedin.com/in/shayontagore/">
-                
+                <i class='fa fa-home'></i>
                 <span>linkedin</span>
                 
             </a>
@@ -99,7 +99,7 @@
 
 		
 
-		<p>This is a quick run-down of how I set up lightbox2 for my hugo site. To be honest, it is my personal documentation to the <a href="https://julianstier.com/posts/2020/03/hugo-and-lightbox/">shortcode written by Julian Stier in his blog-post about lightbox2</a>. His post helped me deal with a number of problems using lightbox2 with hugo when the <a href="https://lokeshdhakar.com/projects/lightbox2/">main lightbox2 tutorial had failed me</a>. This will be a post under constant development as I work out lightbox2 and to remind myself how to implement it.</p>
+		<p>This is a quick run-down of how I set up <a href="https://lokeshdhakar.com/projects/lightbox2/">lightbox2</a> for my hugo site. To be honest, it is my personal documentation to the <a href="https://julianstier.com/posts/2020/03/hugo-and-lightbox/">shortcode written by Julian Stier in his blog-post about lightbox2</a>. His post helped me deal with a number of problems using lightbox2 with hugo when the <a href="https://lokeshdhakar.com/projects/lightbox2/">main lightbox2 tutorial had failed me</a>. This will be a post under constant development as I work out lightbox2 and to remind myself how to implement it.</p>
 <h1 id="setup">Setup</h1>
 <h2 id="preparing-the-directories-and-files">Preparing the directories and files</h2>
 <p>The first step is to prepare the main hugo directory. If it is not there already, generate the directory <code>/static/css/</code> and <code>/static/js/</code>.</p>
@@ -164,7 +164,14 @@
 
 <h2 id="gallery">Gallery</h2>
 <p>Work in progress.</p>
-<p>Followed the guide posted by <a href="https://christianspecht.de/2020/08/10/creating-an-image-gallery-with-hugo-and-lightbox2/">Christian Specht</a></p>
+<p>Followed the guide posted by <a href="https://christianspecht.de/2020/08/10/creating-an-image-gallery-with-hugo-and-lightbox2/">Christian Specht</a>.</p>
+<p>My version of his can be found
+<a href="https://github.com/SNTag/blog-hugo/blob/master/layouts/shortcodes/gallery2.html">here</a>. It will
+display the first image as regular sized, and the rest in a minimized thumbnail.</p>
+<h1 id="setting-up-a-cdn">Setting up a CDN</h1>
+<p>CDN - Content Delivery Network. An important feature to have in a large-scale gallery. This website
+is currently hosted on github. <a href="https://www.reddit.com/r/gohugo/comments/jxv2vq/making_my_own_instagram_in_hugo/">Needs an alternative</a> to accommodate the large number of files I expect
+to display in the future.</p>
 <h1 id="references">References</h1>
 <ol>
 <li>Figure shortcode and getting me to understand lightbox:</li>
@@ -191,7 +198,7 @@
         		<footer>
 			
 			<span>
-			&copy; <time datetime="2020-11-19 11:34:03.682447413 -0500 EST m=&#43;0.068656984">2020</time> Shayon Tagore. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			&copy; <time datetime="2020-11-22 22:25:23.982607244 -0500 EST m=&#43;0.084966269">2020</time> Shayon Tagore. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
 			</span>
 		</footer>
 
